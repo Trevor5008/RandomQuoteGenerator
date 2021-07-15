@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Random Quote Generator</title>
+</head>
+
+<body>
+   <h1>Random Quote Generator:</h1>
+   <main></main>
+   <script src="scripts/quoteData.js"></script>
+   <script>
+      // Pick a random index based on the length of our input array
+      const generateRndIdx = (arr) => Math.floor(Math.random() * arr.length);
+
+      // choose a quote from our data using the above helper function
+      const getRandomQuote = (quotes) => {
+         const idx = generateRndIdx(quotes);
+         // output will be an object
+         return quotes[idx];
+      };
+
+      const quote = getRandomQuote(quotes);
+
+      let html = `
+         <h2>${quote.quote}</h2>
+         <h4>By: ${quote.source}</h4>
+      `;
+
+      document.querySelector('main').innerHTML = html;
+   </script>
+</body>
+
+</html>
