@@ -17,7 +17,8 @@ const quotes = [
   },
   {
       quote: "Never interrupt your enemy when he is making a mistake.",
-      source: "Napoleon Bonaparte"
+      source: "Napoleon Bonaparte",
+      year: 1879
   },
   {
       quote: "If you can count your money, you don't have a billion dollars.",
@@ -33,7 +34,9 @@ const quotes = [
   },
   {
       quote: "I have never killed anyone, but I have read some obituary notices with great satisfaction.",
-      source: "Clarence Darrow"
+      source: "Clarence Darrow",
+      year: 1932,
+      citation: "The Story of My Life"
   },
   {
       quote: "I don't know why we are here, but I'm pretty sure that it is not in order to enjoy ourselves.",
@@ -45,29 +48,46 @@ const quotes = [
   },
   {
       quote: "He is one of those people who would be enormously improved by death.",
-      source: "H. H. Munro"
+      source: "H. H. Munro",
+      year: 1914,
+      citation: "The Feast of Nemesis"
   },
   {
       quote: "Give me chastity and continence, but not yet.",
-      source: "Saint Augustine"
+      source: "Saint Augustine",
+      year: '384'
   }
 ];
 
 /***
  * `getRandomQuote` function
+ * s/create a random num, and use that num to 
+ * return a random obj from the quotes array
 ***/
-const getRandomQuote = (arr) => {
-   const idx = Math.floor(Math.random() * arr.length);
-   return arr[idx];
+const getRandomQuote = (quotesArr) => {
+ // save random index value to a variable
+   const idx = Math.floor(Math.random() * quotesArr.length);
+ // output the object at the random index
+   return quotesArr[idx];
 }
 
 /***
  * `printQuote` function
 ***/
-const printQuote =()=> {
+const printQuote = () => {
+ // invoke the getRandomQuote helper, and store as a variable
    const quote = getRandomQuote(quotes);
-   document.querySelector('p.quote').innerText = quote.quote;
-   document.querySelector('p.source').innerText = quote.source;
+   let html = `
+      <p class="quote">${quote.quote}</p>
+      <p class="source">${quote.source}`;
+   if (quote.citation) {
+      html += `<span class="citation">${quote.citation}</span>`;
+   }
+   if (quote.year) {
+      html += `<span class="year">${quote.year}</span>`;
+   }
+   html += '</p>';
+   document.getElementById('quote-box').innerHTML = html;
 }
 
 
