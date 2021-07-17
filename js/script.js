@@ -113,6 +113,7 @@ const printQuote = () => {
    if (quote.year) {
       html += `<span class="year">${quote.year}</span>`;
    }
+   // adding two line breaks to space content
    html += `<br><br><span class="context">${quote.context}</span></p>`;
    document.getElementById('quote-box').innerHTML = html;
    document.querySelector('body').style.backgroundColor = getRandomColor();
